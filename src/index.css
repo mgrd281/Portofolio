@@ -16,8 +16,13 @@
 	--shadow-color: rgba(0, 0, 0, 0.5);
 }
 
-[data-theme="dark"] {
+[data-theme="dark"],
+:root {
 	--bg-primary: #030014;
+	background-color: #030014;
+}
+
+[data-theme="dark"] {
 	background-color: #030014;
 }
 

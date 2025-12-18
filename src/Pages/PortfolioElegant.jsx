@@ -13,6 +13,7 @@ const useTheme = () => {
   useEffect(() => {
     localStorage.setItem('theme', theme);
     document.documentElement.setAttribute('data-theme', theme);
+    console.log('🎨 Current Theme:', theme);
   }, [theme]);
 
   const toggleTheme = () => {
