@@ -135,12 +135,25 @@ const BackToTop = () => {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-8 right-8 w-12 h-12 bg-orange-500 text-white rounded-full shadow-lg hover:bg-orange-600 transition-all duration-300 z-50 flex items-center justify-center ${
+      className={`fixed bottom-8 right-8 w-12 h-12 md:w-12 md:h-12 w-14 h-14 bg-orange-500 text-white rounded-full shadow-lg hover:bg-orange-600 transition-all duration-300 z-50 flex items-center justify-center touch-target ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
       }`}
       aria-label="Back to top"
     >
       <ChevronUp className="w-6 h-6" />
+    </button>
+  );
+};
+
+// Mobile Contact FAB
+const MobileContactFAB = ({ onClick }) => {
+  return (
+    <button
+      onClick={onClick}
+      className="fixed bottom-24 right-8 w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-full shadow-2xl hover:shadow-orange-500/50 transition-all duration-300 z-50 flex items-center justify-center md:hidden touch-target animate-pulse-glow"
+      aria-label="Contact"
+    >
+      <Mail className="w-6 h-6" />
     </button>
   );
 };
@@ -216,6 +229,146 @@ const PageLoader = () => {
   );
 };
 
+// Mobile Bottom Sheet Component
+const MobileBottomSheet = ({ isOpen, onClose, children }) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
+  return (
+    <>
+      {/* Backdrop */}
+      <div 
+        className="fixed inset-0 bg-black/60 z-[60] md:hidden backdrop-blur-sm"
+        onClick={onClose}
+      />
+      
+      {/* Bottom Sheet */}
+      <div className="fixed inset-x-0 bottom-0 z-[70] md:hidden animate-slideUp">
+        <div className="bg-gray-900 rounded-t-3xl shadow-2xl max-h-[90vh] overflow-y-auto">
+          {/* Handle */}
+          <div className="flex justify-center pt-3 pb-2">
+            <div className="w-12 h-1.5 bg-gray-600 rounded-full"></div>
+          </div>
+          {children}
+        </div>
+      </div>
+    </>
+  );
+};
+
+// Pull to Refresh Component
+const PullToRefresh = ({ onRefresh }) => {
+  const [pulling, setPulling] = useState(false);
+  const [pullDistance, setPullDistance] = useState(0);
+  const startY = useRef(0);
+
+  useEffect(() => {
+    let touchStartY = 0;
+
+    const handleTouchStart = (e) => {
+      if (window.scrollY === 0) {
+        touchStartY = e.touches[0].clientY;
+      }
+    };
+
+    const handleTouchMove = (e) => {
+      if (window.scrollY === 0 && touchStartY > 0) {
+        const currentY = e.touches[0].clientY;
+        const distance = currentY - touchStartY;
+        
+        if (distance > 0 && distance < 100) {
+          setPulling(true);
+          setPullDistance(distance);
+        }
+      }
+    };
+
+    const handleTouchEnd = () => {
+      if (pullDistance > 60) {
+        onRefresh();
+      }
+      setPulling(false);
+      setPullDistance(0);
+    };
+
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchmove', handleTouchMove);
+    window.addEventListener('touchend', handleTouchEnd);
+
+    return () => {
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [pullDistance, onRefresh]);
+
+  return (
+    <div 
+      className={`fixed top-0 left-0 right-0 flex justify-center transition-all duration-300 z-50 md:hidden ${
+        pulling ? 'opacity-100' : 'opacity-0'
+      }`}
+      style={{ transform: `translateY(${pullDistance - 40}px)` }}
+    >
+      <div className="bg-orange-500 px-4 py-2 rounded-full shadow-lg">
+        <div className={`w-6 h-6 border-2 border-white border-t-transparent rounded-full ${
+          pullDistance > 60 ? 'animate-spin' : ''
+        }`}></div>
+      </div>
+    </div>
+  );
+};
+
+// Swipeable Projects Component
+const useSwipeGesture = (onSwipeLeft, onSwipeRight) => {
+  const touchStart = useRef({ x: 0, y: 0 });
+  const touchEnd = useRef({ x: 0, y: 0 });
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    touchEnd.current = { x: 0, y: 0 };
+    touchStart.current = {
+      x: e.targetTouches[0].clientX,
+      y: e.targetTouches[0].clientY
+    };
+  };
+
+  const onTouchMove = (e) => {
+    touchEnd.current = {
+      x: e.targetTouches[0].clientX,
+      y: e.targetTouches[0].clientY
+    };
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart.current.x || !touchEnd.current.x) return;
+    
+    const distanceX = touchStart.current.x - touchEnd.current.x;
+    const distanceY = touchStart.current.y - touchEnd.current.y;
+    const isHorizontalSwipe = Math.abs(distanceX) > Math.abs(distanceY);
+
+    if (isHorizontalSwipe && Math.abs(distanceX) > minSwipeDistance) {
+      if (distanceX > 0) {
+        onSwipeLeft?.();
+      } else {
+        onSwipeRight?.();
+      }
+    }
+  };
+
+  return { onTouchStart, onTouchMove, onTouchEnd };
+};
+
 // Typewriter Effect Component with Loop (Type -> Delete -> Repeat)
 const TypewriterLoopEffect = ({ text, typeSpeed = 100, deleteSpeed = 50, pauseTime = 2000, className = '' }) => {
   const [displayText, setDisplayText] = useState('');
@@ -265,6 +418,7 @@ const PortfolioElegant = () => {
   });
   const [toast, setToast] = useState(null);
   const [headerBlur, setHeaderBlur] = useState(false);
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const activeSection = useActiveSection();
   const { theme, toggleTheme } = useTheme();
 
@@ -275,6 +429,10 @@ const PortfolioElegant = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleRefresh = () => {
+    window.location.reload();
+  };
   const [expandedDescriptions, setExpandedDescriptions] = useState({});
 
   useEffect(() => {
@@ -438,6 +596,9 @@ const PortfolioElegant = () => {
       {/* Page Loader */}
       <PageLoader />
       
+      {/* Pull to Refresh (Mobile Only) */}
+      <PullToRefresh onRefresh={handleRefresh} />
+      
       {/* Theme Toggle */}
       <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
       
@@ -447,8 +608,51 @@ const PortfolioElegant = () => {
       {/* Back to Top Button */}
       <BackToTop />
       
+      {/* Mobile Contact FAB */}
+      <MobileContactFAB onClick={() => setIsBottomSheetOpen(true)} />
+      
       {/* Toast Notification */}
       {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
+      
+      {/* Mobile Bottom Sheet for Contact */}
+      <MobileBottomSheet isOpen={isBottomSheetOpen} onClose={() => setIsBottomSheetOpen(false)}>
+        <div className="p-6">
+          <h3 className="text-2xl font-bold text-white mb-6">Kontakt</h3>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <input
+              type="text"
+              placeholder="Ihr Name"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className="w-full bg-black/20 border border-gray-700/40 rounded-xl px-4 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-orange-500/60 transition-all text-lg"
+              required
+            />
+            <input
+              type="email"
+              placeholder="Ihre E-Mail"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              className="w-full bg-black/20 border border-gray-700/40 rounded-xl px-4 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-orange-500/60 transition-all text-lg"
+              required
+            />
+            <textarea
+              rows="4"
+              placeholder="Ihre Nachricht"
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              className="w-full bg-black/20 border border-gray-700/40 rounded-xl px-4 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-orange-500/60 transition-all resize-none text-lg"
+              required
+            ></textarea>
+            <button
+              type="submit"
+              className="w-full px-6 py-5 bg-orange-500 text-white font-bold rounded-xl hover:bg-orange-600 transition-all text-lg shadow-lg"
+              onClick={() => setIsBottomSheetOpen(false)}
+            >
+              Senden
+            </button>
+          </form>
+        </div>
+      </MobileBottomSheet>
       
       {/* Header - Sticky with Blur & Active Section */}
       <header 

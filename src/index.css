@@ -212,6 +212,35 @@ body {
 	animation: fadeInUp 0.6s ease-out forwards;
 }
 
+/* Slide Up Animation for Bottom Sheet */
+@keyframes slideUp {
+	from {
+		transform: translateY(100%);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.animate-slideUp {
+	animation: slideUp 0.3s ease-out forwards;
+}
+
+/* Touch-Friendly Buttons on Mobile */
+@media (max-width: 768px) {
+	button, a[role="button"] {
+		min-height: 48px;
+		min-width: 48px;
+	}
+	
+	/* Larger tap targets */
+	.touch-target {
+		padding: 16px !important;
+	}
+}
+
 /* Parallax Effect */
 .parallax-slow {
 	transform: translateY(calc(var(--scroll-y) * 0.5px));
