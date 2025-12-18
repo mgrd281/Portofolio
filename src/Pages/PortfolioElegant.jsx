@@ -1,7 +1,54 @@
 import { useEffect, useState, useRef } from 'react';
-import { Mail, Phone, Linkedin, TrendingUp, Target, Award, Briefcase, BarChart, Users, CheckCircle, Download, Search, Megaphone, Zap, Globe, ArrowRight, Lightbulb, HelpCircle, Star, ChevronUp } from 'lucide-react';
+import { Mail, Phone, Linkedin, TrendingUp, Target, Award, Briefcase, BarChart, Users, CheckCircle, Download, Search, Megaphone, Zap, Globe, ArrowRight, Lightbulb, HelpCircle, Star, ChevronUp, Sun, Moon } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
+// Theme Hook
+const useTheme = () => {
+  const [theme, setTheme] = useState(() => {
+    const saved = localStorage.getItem('theme');
+    return saved || 'dark';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('theme', theme);
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
+
+  return { theme, toggleTheme };
+};
+
+// Theme Toggle Button Component
+const ThemeToggle = ({ theme, toggleTheme }) => {
+  return (
+    <button
+      onClick={toggleTheme}
+      className="fixed top-24 right-8 w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 z-50 flex items-center justify-center group"
+      aria-label="Toggle theme"
+    >
+      <div className="relative w-6 h-6">
+        <Sun 
+          className={`absolute inset-0 w-6 h-6 transition-all duration-500 ${
+            theme === 'light' 
+              ? 'rotate-0 opacity-100' 
+              : 'rotate-180 opacity-0'
+          }`}
+        />
+        <Moon 
+          className={`absolute inset-0 w-6 h-6 transition-all duration-500 ${
+            theme === 'dark' 
+              ? 'rotate-0 opacity-100' 
+              : '-rotate-180 opacity-0'
+          }`}
+        />
+      </div>
+    </button>
+  );
+};
 
 // Scroll Progress Indicator Component
 const ScrollProgress = () => {
@@ -219,6 +266,7 @@ const PortfolioElegant = () => {
   const [toast, setToast] = useState(null);
   const [headerBlur, setHeaderBlur] = useState(false);
   const activeSection = useActiveSection();
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -389,6 +437,9 @@ const PortfolioElegant = () => {
     <div className="min-h-screen bg-black text-white" dir="ltr">
       {/* Page Loader */}
       <PageLoader />
+      
+      {/* Theme Toggle */}
+      <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
       
       {/* Scroll Progress Indicator */}
       <ScrollProgress />

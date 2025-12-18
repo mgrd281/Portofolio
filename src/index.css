@@ -4,6 +4,63 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme Variables */
+:root {
+	--bg-primary: #000000;
+	--bg-secondary: #0a0a0a;
+	--bg-card: rgba(17, 17, 17, 0.5);
+	--text-primary: #ffffff;
+	--text-secondary: #a1a1a1;
+	--text-muted: #6b7280;
+	--border-color: rgba(55, 65, 81, 0.5);
+	--shadow-color: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] {
+	--bg-primary: #ffffff;
+	--bg-secondary: #f9fafb;
+	--bg-card: rgba(255, 255, 255, 0.8);
+	--text-primary: #1f2937;
+	--text-secondary: #4b5563;
+	--text-muted: #9ca3af;
+	--border-color: rgba(209, 213, 219, 0.8);
+	--shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Apply theme colors */
+body {
+	background-color: var(--bg-primary);
+	color: var(--text-primary);
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light Theme Overrides */
+[data-theme="light"] {
+	/* Background colors */
+	.bg-black { background-color: #ffffff !important; }
+	.bg-gray-900 { background-color: #f3f4f6 !important; }
+	.bg-gray-800 { background-color: #e5e7eb !important; }
+	
+	/* Text colors */
+	.text-white { color: #1f2937 !important; }
+	.text-gray-300 { color: #4b5563 !important; }
+	.text-gray-400 { color: #6b7280 !important; }
+	.text-gray-500 { color: #9ca3af !important; }
+	
+	/* Border colors */
+	.border-gray-800 { border-color: #e5e7eb !important; }
+	.border-gray-700 { border-color: #d1d5db !important; }
+	
+	/* Card backgrounds */
+	.bg-black\/95 { background-color: rgba(255, 255, 255, 0.95) !important; }
+	.bg-black\/80 { background-color: rgba(255, 255, 255, 0.8) !important; }
+	.bg-gray-900\/50 { background-color: rgba(249, 250, 251, 0.9) !important; }
+	.bg-gray-900\/30 { background-color: rgba(249, 250, 251, 0.7) !important; }
+	
+	/* Shadows */
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
 * {
 	margin: 0;
 	padding: 0;
