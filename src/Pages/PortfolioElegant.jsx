@@ -229,6 +229,29 @@ const PageLoader = () => {
   );
 };
 
+// Video Background Component (Optional - for real video)
+const VideoBackground = ({ videoSrc, posterSrc }) => {
+  if (!videoSrc) return null;
+  
+  return (
+    <div className="absolute inset-0 z-0">
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster={posterSrc}
+        className="w-full h-full object-cover opacity-30"
+      >
+        <source src={videoSrc} type="video/mp4" />
+      </video>
+      {/* Video Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80"></div>
+    </div>
+  );
+};
+
 // Mobile Bottom Sheet Component
 const MobileBottomSheet = ({ isOpen, onClose, children }) => {
   useEffect(() => {
@@ -592,7 +615,7 @@ const PortfolioElegant = () => {
 
 
   return (
-    <div className="min-h-screen bg-black text-white w-full overflow-x-hidden" dir="ltr" style={{ position: 'relative' }}>
+    <div className="min-h-screen w-full overflow-x-hidden" dir="ltr" style={{ position: 'relative' }}>
       {/* Page Loader */}
       <PageLoader />
       
@@ -672,8 +695,10 @@ const PortfolioElegant = () => {
               {[
                 { href: '#home', label: 'Startseite', id: 'home' },
                 { href: '#about', label: 'Über mich', id: 'about' },
-                { href: '#services', label: 'Services', id: 'services' },
+                { href: '#schwerpunkte', label: 'Schwerpunkte', id: 'schwerpunkte' },
                 { href: '#experience', label: 'Erfahrung', id: 'experience' },
+                { href: '#karriereziele', label: 'Karriereziele', id: 'karriereziele' },
+                { href: '#erfolgsgeschichten', label: 'Projekte', id: 'erfolgsgeschichten' },
                 { href: '#contact', label: 'Kontakt', id: 'contact' }
               ].map((link) => (
                 <a
@@ -698,10 +723,22 @@ const PortfolioElegant = () => {
 
       {/* Hero Section - Separate Section Below Header */}
       <section id="home" className="relative overflow-hidden pt-16 pb-16 px-6 lg:px-10" style={{ paddingTop: 'calc(70px + 4rem)', minHeight: 'calc(100vh - 70px)' }}>
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-900/10 to-black"></div>
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-600/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        {/* Animated Video Background */}
+        <div className="absolute inset-0 z-0">
+          {/* Animated Gradient Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black animate-gradient-slow"></div>
+          
+          {/* Floating Orbs Animation */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-orange-500/10 to-orange-600/5 rounded-full blur-3xl animate-float-slow"></div>
+            <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-to-br from-orange-600/10 to-orange-500/5 rounded-full blur-3xl animate-float-slow" style={{ animationDelay: '2s' }}></div>
+            <div className="absolute top-1/2 right-1/4 w-72 h-72 bg-gradient-to-br from-orange-400/8 to-orange-700/5 rounded-full blur-3xl animate-float-slow" style={{ animationDelay: '4s' }}></div>
+          </div>
+          
+          {/* Overlay Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80"></div>
+        </div>
 
         <div className="max-w-7xl mx-auto w-full relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-8">
@@ -719,14 +756,14 @@ const PortfolioElegant = () => {
               
               <div className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl font-light h-[7rem] md:h-[6rem] flex items-start">
                 <TypewriterLoopEffect 
-                  text="Spezialist für Online Marketing, Google Ads und E-Commerce. Ich helfe Unternehmen dabei, ihre digitale Präsenz zu stärken und messbare Ergebnisse zu erzielen." 
+                  text="Spezialist für Online Marketing, Google Ads und E-Commerce. Ich helfe Unternehmen dabei, ihre digitale Präsenz zu stärken und messbare Ergebnisse zu erzielen."
                   typeSpeed={50}
                   deleteSpeed={30}
                   pauseTime={3000}
                   className="inline-block"
                 />
               </div>
-              
+
               <div className="flex flex-wrap gap-3 pt-2">
                 <a href="#contact">
                   <button className="group px-6 py-3 bg-orange-500 text-white font-semibold rounded-xl hover:bg-orange-600 transition-all transform hover:scale-105 shadow-lg shadow-orange-500/30 flex items-center gap-2 text-sm">
