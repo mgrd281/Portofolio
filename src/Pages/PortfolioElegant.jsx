@@ -1,7 +1,173 @@
-import { useEffect, useState } from 'react';
-import { Mail, Phone, Linkedin, TrendingUp, Target, Award, Briefcase, BarChart, Users, CheckCircle, Download, Search, Megaphone, Zap, Globe, ArrowRight, Lightbulb, HelpCircle, Star } from 'lucide-react';
+import { useEffect, useState, useRef } from 'react';
+import { Mail, Phone, Linkedin, TrendingUp, Target, Award, Briefcase, BarChart, Users, CheckCircle, Download, Search, Megaphone, Zap, Globe, ArrowRight, Lightbulb, HelpCircle, Star, ChevronUp } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
+// Scroll Progress Indicator Component
+const ScrollProgress = () => {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-50">
+      <div 
+        className="h-full bg-gradient-to-r from-orange-500 to-orange-400 transition-all duration-150"
+        style={{ width: `${scrollProgress}%` }}
+      ></div>
+    </div>
+  );
+};
+
+// Animated Counter Component
+const CounterAnimation = ({ end, duration = 2000, suffix = '', prefix = '' }) => {
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    if (hasAnimated || !elementRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setHasAnimated(true);
+          const increment = end / (duration / 16);
+          let current = 0;
+
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= end) {
+              setCount(end);
+              clearInterval(timer);
+            } else {
+              setCount(Math.floor(current));
+            }
+          }, 16);
+
+          return () => clearInterval(timer);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (elementRef.current) observer.observe(elementRef.current);
+
+    return () => observer.disconnect();
+  }, [end, duration, hasAnimated]);
+
+  return <span ref={elementRef}>{prefix}{count}{suffix}</span>;
+};
+
+// Back to Top Button Component
+const BackToTop = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsVisible(window.scrollY > 500);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <button
+      onClick={scrollToTop}
+      className={`fixed bottom-8 right-8 w-12 h-12 bg-orange-500 text-white rounded-full shadow-lg hover:bg-orange-600 transition-all duration-300 z-50 flex items-center justify-center ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
+      }`}
+      aria-label="Back to top"
+    >
+      <ChevronUp className="w-6 h-6" />
+    </button>
+  );
+};
+
+// Active Section Tracker
+const useActiveSection = () => {
+  const [activeSection, setActiveSection] = useState('home');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'services', 'experience', 'contact'];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return activeSection;
+};
+
+// Toast Notification Component
+const Toast = ({ message, type = 'success', onClose }) => {
+  useEffect(() => {
+    const timer = setTimeout(onClose, 3000);
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
+  return (
+    <div
+      className={`fixed top-24 right-8 px-6 py-4 rounded-xl shadow-2xl z-50 flex items-center gap-3 animate-fadeInUp ${
+        type === 'success' ? 'bg-green-500' : 'bg-red-500'
+      }`}
+    >
+      <CheckCircle className="w-5 h-5 text-white" />
+      <span className="text-white font-medium">{message}</span>
+    </div>
+  );
+};
+
+// Page Loader Component
+const PageLoader = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!isLoading) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black z-[9999] flex items-center justify-center">
+      <div className="text-center">
+        <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mb-4 mx-auto"></div>
+        <p className="text-orange-500 text-xl font-bold">Loading...</p>
+      </div>
+    </div>
+  );
+};
 
 // Typewriter Effect Component with Loop (Type -> Delete -> Repeat)
 const TypewriterLoopEffect = ({ text, typeSpeed = 100, deleteSpeed = 50, pauseTime = 2000, className = '' }) => {
@@ -44,68 +210,23 @@ const TypewriterLoopEffect = ({ text, typeSpeed = 100, deleteSpeed = 50, pauseTi
     </span>
   );
 };
-
-// Counter Animation Component
-const CounterAnimation = ({ value, duration = 2000, delay = 0, suffix = '' }) => {
-  const [count, setCount] = useState(0);
-  const [hasStarted, setHasStarted] = useState(false);
-
-  useEffect(() => {
-    const startTimer = setTimeout(() => {
-      setHasStarted(true);
-    }, delay);
-
-    return () => clearTimeout(startTimer);
-  }, [delay]);
-
-  useEffect(() => {
-    if (!hasStarted) return;
-
-    // Extract numeric value and suffix
-    const numericValue = parseFloat(value.replace(/[^0-9.]/g, ''));
-    const originalSuffix = value.replace(/[0-9.]/g, '') || suffix;
-    const steps = 60;
-    const increment = numericValue / steps;
-    const stepDuration = duration / steps;
-
-    let currentStep = 0;
-    const timer = setInterval(() => {
-      currentStep++;
-      if (currentStep <= steps) {
-        const newValue = Math.min(increment * currentStep, numericValue);
-        setCount(newValue);
-      } else {
-        setCount(numericValue);
-        clearInterval(timer);
-      }
-    }, stepDuration);
-
-    return () => clearInterval(timer);
-  }, [hasStarted, value, duration, suffix]);
-
-  // Format the display value
-  const formatValue = () => {
-    const numericValue = parseFloat(value.replace(/[^0-9.]/g, ''));
-    const originalSuffix = value.replace(/[0-9.]/g, '') || suffix;
-    
-    if (value.includes('%')) {
-      return `${Math.round(count)}%`;
-    } else if (value.includes('+')) {
-      return `${Math.round(count)}+`;
-    } else {
-      return `${Math.round(count)}${originalSuffix}`;
-    }
-  };
-
-  return <span>{formatValue()}</span>;
-};
-
 const PortfolioElegant = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
+  const [toast, setToast] = useState(null);
+  const [headerBlur, setHeaderBlur] = useState(false);
+  const activeSection = useActiveSection();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setHeaderBlur(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const [expandedDescriptions, setExpandedDescriptions] = useState({});
 
   useEffect(() => {
@@ -118,7 +239,7 @@ const PortfolioElegant = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    alert('Vielen Dank! Ich werde mich bald bei Ihnen melden.');
+    setToast({ message: 'Vielen Dank! Ich werde mich bald bei Ihnen melden.', type: 'success' });
     setFormData({ name: '', email: '', message: '' });
   };
 
@@ -189,10 +310,10 @@ const PortfolioElegant = () => {
   ];
 
   const achievements = [
-    { number: '300%', label: 'Umsatzsteigerung', icon: TrendingUp },
-    { number: '6+', label: 'Verkaufsplattformen', icon: Globe },
-    { number: '4+', label: 'Zertifikate', icon: Award },
-    { number: '98%', label: 'Kundenzufriedenheit', icon: Users }
+    { number: '300%', value: 300, suffix: '%', label: 'Umsatzsteigerung', icon: TrendingUp },
+    { number: '6+', value: 6, suffix: '+', label: 'Verkaufsplattformen', icon: Globe },
+    { number: '4+', value: 4, suffix: '+', label: 'Zertifikate', icon: Award },
+    { number: '98%', value: 98, suffix: '%', label: 'Kundenzufriedenheit', icon: Users }
   ];
 
   // Wunschrolle & Karriereziele
@@ -266,19 +387,55 @@ const PortfolioElegant = () => {
 
   return (
     <div className="min-h-screen bg-black text-white" dir="ltr">
-      {/* Header - Navigation Only */}
-      <header className="fixed top-0 w-full z-50 bg-black/95 backdrop-blur-xl border-b border-gray-800" style={{ height: '70px' }}>
+      {/* Page Loader */}
+      <PageLoader />
+      
+      {/* Scroll Progress Indicator */}
+      <ScrollProgress />
+      
+      {/* Back to Top Button */}
+      <BackToTop />
+      
+      {/* Toast Notification */}
+      {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
+      
+      {/* Header - Sticky with Blur & Active Section */}
+      <header 
+        className={`fixed top-0 w-full z-50 border-b transition-all duration-300 ${
+          headerBlur 
+            ? 'bg-black/80 backdrop-blur-2xl border-gray-700 shadow-lg shadow-orange-500/5' 
+            : 'bg-black/95 backdrop-blur-xl border-gray-800'
+        }`} 
+        style={{ height: '70px' }}
+      >
         <nav className="max-w-7xl mx-auto px-6 lg:px-10 h-full">
           <div className="flex items-center justify-between h-full">
             <a href="#home" className="text-xl font-bold text-orange-500 hover:text-orange-400 transition-colors">
               Online Marketing
             </a>
             <div className="hidden md:flex items-center gap-8">
-              <a href="#home" className="text-gray-300 hover:text-orange-500 transition-colors text-sm">Startseite</a>
-              <a href="#about" className="text-gray-300 hover:text-orange-500 transition-colors text-sm">Über mich</a>
-              <a href="#services" className="text-gray-300 hover:text-orange-500 transition-colors text-sm">Services</a>
-              <a href="#experience" className="text-gray-300 hover:text-orange-500 transition-colors text-sm">Erfahrung</a>
-              <a href="#contact" className="text-gray-300 hover:text-orange-500 transition-colors text-sm">Kontakt</a>
+              {[
+                { href: '#home', label: 'Startseite', id: 'home' },
+                { href: '#about', label: 'Über mich', id: 'about' },
+                { href: '#services', label: 'Services', id: 'services' },
+                { href: '#experience', label: 'Erfahrung', id: 'experience' },
+                { href: '#contact', label: 'Kontakt', id: 'contact' }
+              ].map((link) => (
+                <a
+                  key={link.id}
+                  href={link.href}
+                  className={`text-sm transition-all duration-300 relative ${
+                    activeSection === link.id
+                      ? 'text-orange-500 font-semibold'
+                      : 'text-gray-300 hover:text-orange-500'
+                  }`}
+                >
+                  {link.label}
+                  {activeSection === link.id && (
+                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-orange-500"></span>
+                  )}
+                </a>
+              ))}
             </div>
           </div>
         </nav>
@@ -330,13 +487,17 @@ const PortfolioElegant = () => {
                 </a>
               </div>
 
-              {/* Quick Stats */}
+              {/* Quick Stats - Animated Counters */}
               <div className="grid grid-cols-4 gap-4 pt-4">
                 {achievements.map((achievement, index) => (
                   <div key={index} className="text-center" data-aos="fade-up" data-aos-delay={index * 100}>
                     <achievement.icon className="w-5 h-5 text-orange-500 mx-auto mb-1" />
                     <div className="text-xl md:text-2xl font-bold text-orange-500">
-                      {achievement.number}
+                      <CounterAnimation 
+                        end={achievement.value} 
+                        suffix={achievement.suffix}
+                        duration={2500}
+                      />
                     </div>
                     <div className="text-gray-400 text-xs mt-0.5">{achievement.label}</div>
                   </div>

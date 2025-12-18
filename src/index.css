@@ -125,6 +125,83 @@ body {
 	animation: spin-slow 20s linear infinite;
 }
 
+/* Pulse Glow Animation */
+@keyframes pulse-glow {
+	0%, 100% {
+		box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+	}
+	50% {
+		box-shadow: 0 0 40px rgba(249, 115, 22, 0.6);
+	}
+}
+
+.animate-pulse-glow {
+	animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Smooth Entrance Animation */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-fadeInUp {
+	animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Parallax Effect */
+.parallax-slow {
+	transform: translateY(calc(var(--scroll-y) * 0.5px));
+}
+
+.parallax-fast {
+	transform: translateY(calc(var(--scroll-y) * 0.8px));
+}
+
+/* Tooltip Styles */
+.tooltip {
+	position: relative;
+}
+
+.tooltip::after {
+	content: attr(data-tooltip);
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-8px);
+	background: rgba(249, 115, 22, 0.95);
+	color: white;
+	padding: 8px 12px;
+	border-radius: 8px;
+	font-size: 14px;
+	white-space: nowrap;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s, transform 0.3s;
+	z-index: 1000;
+}
+
+.tooltip:hover::after {
+	opacity: 1;
+	transform: translateX(-50%) translateY(-12px);
+}
+
+/* Smooth Card Hover */
+.card-hover {
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 20px 40px rgba(249, 115, 22, 0.2);
+}
+
 /* Floating Particles Animation */
 @keyframes float-particles {
 	0%, 100% {
