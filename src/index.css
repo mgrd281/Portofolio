@@ -27,14 +27,14 @@
 }
 
 [data-theme="light"] {
-	--bg-primary: #e5e7eb;
-	--bg-secondary: #d1d5db;
-	--bg-card: rgba(255, 255, 255, 0.6);
-	--text-primary: #1f2937;
-	--text-secondary: #4b5563;
+	--bg-primary: #0a0a0a;
+	--bg-secondary: #1a1a1a;
+	--bg-card: rgba(17, 17, 17, 0.5);
+	--text-primary: #ffffff;
+	--text-secondary: #a1a1a1;
 	--text-muted: #6b7280;
-	--border-color: rgba(156, 163, 175, 0.3);
-	--shadow-color: rgba(0, 0, 0, 0.1);
+	--border-color: rgba(55, 65, 81, 0.5);
+	--shadow-color: rgba(0, 0, 0, 0.5);
 }
 
 /* Apply theme colors */
@@ -46,36 +46,36 @@ body {
 
 /* Light Theme Overrides */
 [data-theme="light"] {
-	/* Main background - Grey like image */
-	background-color: #e5e7eb;
+	/* Keep Black Background */
+	background-color: #0a0a0a;
 	
-	/* Background colors */
-	.bg-black { background-color: #e5e7eb !important; }
-	.bg-gray-900 { background-color: #d1d5db !important; }
-	.bg-gray-800 { background-color: #c5c9cf !important; }
+	/* Background colors - Black */
+	.bg-black { background-color: #0a0a0a !important; }
+	.bg-gray-900 { background-color: #1a1a1a !important; }
+	.bg-gray-800 { background-color: #2a2a2a !important; }
 	
-	/* Text colors - Dark grey like image */
-	.text-white { color: #374151 !important; }
-	.text-gray-300 { color: #4b5563 !important; }
-	.text-gray-400 { color: #6b7280 !important; }
-	.text-gray-500 { color: #9ca3af !important; }
+	/* Text colors - Keep White */
+	.text-white { color: #ffffff !important; }
+	.text-gray-300 { color: #d1d5db !important; }
+	.text-gray-400 { color: #9ca3af !important; }
+	.text-gray-500 { color: #6b7280 !important; }
 	
-	/* Border colors - Subtle grey */
-	.border-gray-800 { border-color: rgba(209, 213, 219, 0.6) !important; }
-	.border-gray-700 { border-color: rgba(156, 163, 175, 0.4) !important; }
-	.border-gray-800\/50 { border-color: rgba(209, 213, 219, 0.4) !important; }
-	.border-gray-700\/30 { border-color: rgba(156, 163, 175, 0.3) !important; }
-	.border-gray-700\/40 { border-color: rgba(156, 163, 175, 0.3) !important; }
+	/* Border colors */
+	.border-gray-800 { border-color: rgba(55, 65, 81, 0.5) !important; }
+	.border-gray-700 { border-color: rgba(75, 85, 99, 0.4) !important; }
+	.border-gray-800\/50 { border-color: rgba(55, 65, 81, 0.3) !important; }
+	.border-gray-700\/30 { border-color: rgba(75, 85, 99, 0.3) !important; }
+	.border-gray-700\/40 { border-color: rgba(75, 85, 99, 0.4) !important; }
 	
-	/* Header & Cards - Clean white like image */
-	.bg-black\/95 { background-color: rgba(255, 255, 255, 0.95) !important; }
-	.bg-black\/80 { background-color: rgba(255, 255, 255, 0.85) !important; }
-	.bg-black\/20 { background-color: rgba(255, 255, 255, 0.4) !important; }
-	.bg-gray-900\/50 { background-color: rgba(255, 255, 255, 0.7) !important; }
-	.bg-gray-900\/30 { background-color: rgba(255, 255, 255, 0.5) !important; }
+	/* Header & Cards - Black with transparency */
+	.bg-black\/95 { background-color: rgba(10, 10, 10, 0.95) !important; }
+	.bg-black\/80 { background-color: rgba(10, 10, 10, 0.85) !important; }
+	.bg-black\/20 { background-color: rgba(10, 10, 10, 0.2) !important; }
+	.bg-gray-900\/50 { background-color: rgba(17, 17, 17, 0.5) !important; }
+	.bg-gray-900\/30 { background-color: rgba(17, 17, 17, 0.3) !important; }
 	
-	/* Shadows - Subtle */
-	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+	/* Shadows */
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
 }
 
 * {
@@ -212,18 +212,18 @@ html {
 	background: transparent;
 }
 
-/* Light Mode Scrollbar */
+/* Light Mode Scrollbar - Keep Dark */
 [data-theme="light"] ::-webkit-scrollbar-track {
-	background: rgba(209, 213, 219, 0.5);
+	background: rgba(3, 0, 20, 0.4);
 }
 
 [data-theme="light"] ::-webkit-scrollbar-thumb {
-	background: rgba(249, 115, 22, 0.5);
-	border: 1px solid rgba(249, 115, 22, 0.3);
+	background: rgba(249, 115, 22, 0.4);
+	border: 1px solid rgba(249, 115, 22, 0.2);
 }
 
 [data-theme="light"] ::-webkit-scrollbar-thumb:hover {
-	background: rgba(249, 115, 22, 0.7);
+	background: rgba(249, 115, 22, 0.6);
 }
 
 [data-aos] {
