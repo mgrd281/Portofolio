@@ -41,7 +41,7 @@ body {
 
 /* Light Theme Overrides */
 [data-theme="light"] {
-	/* Main background - Grey */
+	/* Main background - Grey like image */
 	background-color: #e5e7eb;
 	
 	/* Background colors */
@@ -49,28 +49,28 @@ body {
 	.bg-gray-900 { background-color: #d1d5db !important; }
 	.bg-gray-800 { background-color: #c5c9cf !important; }
 	
-	/* Text colors */
+	/* Text colors - Dark grey like image */
 	.text-white { color: #374151 !important; }
 	.text-gray-300 { color: #4b5563 !important; }
 	.text-gray-400 { color: #6b7280 !important; }
 	.text-gray-500 { color: #9ca3af !important; }
 	
-	/* Border colors */
-	.border-gray-800 { border-color: #d1d5db !important; }
-	.border-gray-700 { border-color: #9ca3af !important; }
-	.border-gray-800\/50 { border-color: rgba(209, 213, 219, 0.5) !important; }
+	/* Border colors - Subtle grey */
+	.border-gray-800 { border-color: rgba(209, 213, 219, 0.6) !important; }
+	.border-gray-700 { border-color: rgba(156, 163, 175, 0.4) !important; }
+	.border-gray-800\/50 { border-color: rgba(209, 213, 219, 0.4) !important; }
 	.border-gray-700\/30 { border-color: rgba(156, 163, 175, 0.3) !important; }
-	.border-gray-700\/40 { border-color: rgba(156, 163, 175, 0.4) !important; }
+	.border-gray-700\/40 { border-color: rgba(156, 163, 175, 0.3) !important; }
 	
-	/* Card backgrounds - Lighter grey with transparency */
-	.bg-black\/95 { background-color: rgba(229, 231, 235, 0.95) !important; }
-	.bg-black\/80 { background-color: rgba(229, 231, 235, 0.8) !important; }
-	.bg-black\/20 { background-color: rgba(255, 255, 255, 0.3) !important; }
-	.bg-gray-900\/50 { background-color: rgba(255, 255, 255, 0.5) !important; }
-	.bg-gray-900\/30 { background-color: rgba(255, 255, 255, 0.3) !important; }
+	/* Header & Cards - Clean white like image */
+	.bg-black\/95 { background-color: rgba(255, 255, 255, 0.95) !important; }
+	.bg-black\/80 { background-color: rgba(255, 255, 255, 0.85) !important; }
+	.bg-black\/20 { background-color: rgba(255, 255, 255, 0.4) !important; }
+	.bg-gray-900\/50 { background-color: rgba(255, 255, 255, 0.7) !important; }
+	.bg-gray-900\/30 { background-color: rgba(255, 255, 255, 0.5) !important; }
 	
-	/* Shadows */
-	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	/* Shadows - Subtle */
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 * {
