@@ -12,6 +12,10 @@ import WelcomeScreen from "./Pages/WelcomeScreen";
 import Lebenslauf from "./Pages/Lebenslauf";
 import Anschreiben from "./Pages/Anschreiben";
 import PortfolioTwo from "./Pages/PortfolioTwo";
+import PortfolioModern from "./Pages/PortfolioModern";
+import PortfolioArabic from "./Pages/PortfolioArabic";
+import PortfolioGerman from "./Pages/PortfolioGerman";
+import PortfolioElegant from "./Pages/PortfolioElegant";
 import { AnimatePresence } from 'framer-motion';
 import notfound from "./Pages/404";
 import NotFoundPage from "./Pages/404";
@@ -79,6 +83,10 @@ function App() {
         <Route path="/anschreiben" element={<Anschreiben />} />
         <Route path="/portfolio" element={<LandingPage showWelcome={showWelcome} setShowWelcome={setShowWelcome} />} />
         <Route path="/portfolio-2" element={<PortfolioTwo />} />
+        <Route path="/portfolio-modern" element={<PortfolioModern />} />
+        <Route path="/portfolio-arabic" element={<PortfolioArabic />} />
+        <Route path="/portfolio-german" element={<PortfolioGerman />} />
+        <Route path="/portfolio-elegant" element={<PortfolioElegant />} />
         <Route path="/project/:id" element={<ProjectPageLayout />} />
         <Route path="*" element={<NotFoundPage />} /> {/* Ini route 404 */}
       </Routes>

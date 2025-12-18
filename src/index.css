@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -109,6 +110,71 @@ body {
 
 .animate-shine {
 	animation: shine 1.5s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.animate-spin-slow {
+	animation: spin-slow 20s linear infinite;
+}
+
+/* Floating Particles Animation */
+@keyframes float-particles {
+	0%, 100% {
+		transform: translate(0, 0) scale(1);
+		opacity: 0.4;
+	}
+	33% {
+		transform: translate(50px, -50px) scale(1.15);
+		opacity: 0.6;
+	}
+	66% {
+		transform: translate(-40px, 40px) scale(0.95);
+		opacity: 0.5;
+	}
+}
+
+.float-particle {
+	animation: float-particles 20s ease-in-out infinite;
+	z-index: 0;
+	pointer-events: none;
+}
+
+.float-particle-delay-1 {
+	animation-delay: -5s;
+}
+
+.float-particle-delay-2 {
+	animation-delay: -10s;
+}
+
+.float-particle-delay-3 {
+	animation-delay: -15s;
+}
+
+/* Glow Pulse Animation */
+@keyframes glow-pulse {
+	0%, 100% {
+		opacity: 0.5;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 0.8;
+		transform: scale(1.1);
+	}
+}
+
+.glow-pulse {
+	animation: glow-pulse 4s ease-in-out infinite;
+	z-index: 0;
+	pointer-events: none;
 }
 
 

@@ -14,6 +14,8 @@ import {
 import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { AnimatePresence, motion } from 'framer-motion';
+import { X, ExternalLink, Github } from 'lucide-react';
 
 const PortfolioTwo = () => {
     const [text, setText] = React.useState('');
@@ -23,6 +25,7 @@ const PortfolioTwo = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
     const [scrollProgress, setScrollProgress] = React.useState(0);
     const [showBackToTop, setShowBackToTop] = React.useState(false);
+    const [selectedProject, setSelectedProject] = React.useState(null);
 
     const roles = [
         'Online Marketing Specialist',
@@ -491,37 +494,61 @@ const PortfolioTwo = () => {
                             title: "Shopify Fashion Store",
                             category: "E-Commerce Website",
                             image: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=2340&auto=format&fit=crop",
-                            tags: ["Shopify", "Design", "SEO"]
+                            tags: ["Shopify", "Liquid", "Tailwind CSS", "SEO"],
+                            description: "A complete overhaul of a high-traffic fashion retailer's online store. We focused on improving the user journey, optimizing mobile performance, and integrating a custom inventory management system.",
+                            features: ["Custom Theme Development", "Advanced Product Filtering", "Multi-currency Support", "Instagram Feed Integration"],
+                            link: "#",
+                            github: "#"
                         },
                         {
                             title: "SEO Growth Campaign",
                             category: "Online Marketing",
                             image: "https://images.unsplash.com/photo-1572021335469-31706a17aaef?q=80&w=2340&auto=format&fit=crop",
-                            tags: ["SEO", "Analytics", "Growth"]
+                            tags: ["SEO", "Google Analytics", "Content Strategy", "Backlinking"],
+                            description: "A comprehensive SEO strategy for a B2B software company. Within 6 months, we achieved a 150% increase in organic traffic and a 40% boost in lead generation through targeted content and technical optimization.",
+                            features: ["Keyword Research & Strategy", "Technical SEO Audit", "Content Marketing Plan", "Link Building Campaign"],
+                            link: "#",
+                            github: "#"
                         },
                         {
                             title: "Google Ads Strategy",
                             category: "Performance Marketing",
                             image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2340&auto=format&fit=crop",
-                            tags: ["Google Ads", "PPC", "ROI"]
+                            tags: ["Google Ads", "PPC", "Conversion Optimization", "A/B Testing"],
+                            description: "Managed a high-budget PPC campaign for a financial services provider. By optimizing landing pages and refining audience targeting, we reduced the Cost Per Acquisition (CPA) by 35% while scaling spend.",
+                            features: ["Campaign Structure Optimization", "Ad Copy Testing", "Landing Page CRO", "Detailed Reporting Dashboard"],
+                            link: "#",
+                            github: "#"
                         },
                         {
                             title: "Corporate Website",
                             category: "Web Development",
                             image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf7d?q=80&w=2338&auto=format&fit=crop",
-                            tags: ["React", "Design", "UX"]
+                            tags: ["React", "Node.js", "PostgreSQL", "Framer Motion"],
+                            description: "Developed a modern, responsive corporate website for a renewable energy firm. The site features interactive data visualizations, a secure client portal, and a CMS for easy content updates.",
+                            features: ["Responsive Design", "Interactive Maps", "Secure Client Login", "CMS Integration"],
+                            link: "#",
+                            github: "#"
                         },
                         {
                             title: "Social Media Branding",
                             category: "Content Marketing",
                             image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2274&auto=format&fit=crop",
-                            tags: ["Instagram", "Content", "Brand"]
+                            tags: ["Instagram", "TikTok", "Content Creation", "Community Mgmt"],
+                            description: "Revamped the social media presence of a lifestyle brand. Through consistent, high-quality visual storytelling and community engagement, we grew their follower base by 50k in one year.",
+                            features: ["Visual Identity Guide", "Content Calendar", "Influencer Partnerships", "Engagement Strategy"],
+                            link: "#",
+                            github: "#"
                         },
                         {
                             title: "Email Automation",
                             category: "CRM & Marketing",
                             image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2340&auto=format&fit=crop",
-                            tags: ["CRM", "Automation", "Email"]
+                            tags: ["Klaviyo", "Automation Flows", "Copywriting", "Segmentation"],
+                            description: "Implemented a sophisticated email marketing automation system for an e-commerce brand. Setup included welcome series, abandoned cart recovery, and post-purchase follow-ups, resulting in a 25% revenue uplift.",
+                            features: ["Automated Workflows", "Customer Segmentation", "A/B Testing", "Performance Analytics"],
+                            link: "#",
+                            github: "#"
                         }
                     ].map((project, index) => (
                         <div
@@ -571,8 +598,11 @@ const PortfolioTwo = () => {
 
                                 {/* Action Button */}
                                 <div className="flex items-center gap-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-200">
-                                    <button className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#ff5722] to-[#f4511e] text-white font-bold rounded-full hover:from-[#f4511e] hover:to-[#e64a19] transition-all transform hover:scale-105 shadow-lg shadow-[#ff5722]/30">
-                                        <span>View Project</span>
+                                    <button
+                                        onClick={() => setSelectedProject(project)}
+                                        className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#ff5722] to-[#f4511e] text-white font-bold rounded-full hover:from-[#f4511e] hover:to-[#e64a19] transition-all transform hover:scale-105 shadow-lg shadow-[#ff5722]/30"
+                                    >
+                                        <span>View Details</span>
                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                         </svg>
@@ -732,6 +762,107 @@ const PortfolioTwo = () => {
                     <ArrowUp size={24} />
                 </button>
             )}
+            {/* Project Modal */}
+            <AnimatePresence>
+                {selectedProject && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+                        onClick={() => setSelectedProject(null)}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                            transition={{ type: "spring", duration: 0.5 }}
+                            className="relative w-full max-w-4xl bg-[#2d2d2d] rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
+                            onClick={e => e.stopPropagation()}
+                        >
+                            {/* Close Button */}
+                            <button
+                                onClick={() => setSelectedProject(null)}
+                                className="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-[#ff5722] rounded-full text-white transition-colors"
+                            >
+                                <X size={24} />
+                            </button>
+
+                            <div className="grid md:grid-cols-2">
+                                {/* Image Section */}
+                                <div className="relative h-64 md:h-full min-h-[300px]">
+                                    <img
+                                        src={selectedProject.image}
+                                        alt={selectedProject.title}
+                                        className="absolute inset-0 w-full h-full object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#2d2d2d] via-transparent to-transparent md:bg-gradient-to-r"></div>
+                                </div>
+
+                                {/* Content Section */}
+                                <div className="p-8 md:p-10 flex flex-col h-full max-h-[90vh] overflow-y-auto custom-scrollbar">
+                                    <span className="text-[#ff5722] font-bold tracking-wider text-sm mb-2 uppercase">
+                                        {selectedProject.category}
+                                    </span>
+                                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                                        {selectedProject.title}
+                                    </h2>
+
+                                    <p className="text-gray-300 leading-relaxed mb-6">
+                                        {selectedProject.description}
+                                    </p>
+
+                                    <div className="mb-8">
+                                        <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
+                                            <span className="w-1 h-6 bg-[#ff5722] rounded-full"></span>
+                                            Key Features
+                                        </h4>
+                                        <ul className="grid grid-cols-1 gap-2">
+                                            {selectedProject.features.map((feature, idx) => (
+                                                <li key={idx} className="flex items-center gap-2 text-gray-400 text-sm">
+                                                    <div className="w-1.5 h-1.5 bg-[#ff5722] rounded-full"></div>
+                                                    {feature}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    <div className="mb-8">
+                                        <h4 className="text-white font-semibold mb-3">Technologies</h4>
+                                        <div className="flex flex-wrap gap-2">
+                                            {selectedProject.tags.map((tag, idx) => (
+                                                <span
+                                                    key={idx}
+                                                    className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300"
+                                                >
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-auto flex gap-4 pt-6 border-t border-white/10">
+                                        <a
+                                            href={selectedProject.link}
+                                            className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-[#ff5722] hover:bg-[#f4511e] text-white font-bold rounded-full transition-all transform hover:scale-105"
+                                        >
+                                            <ExternalLink size={18} />
+                                            Live Demo
+                                        </a>
+                                        <a
+                                            href={selectedProject.github}
+                                            className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold rounded-full transition-all transform hover:scale-105"
+                                        >
+                                            <Github size={18} />
+                                            Source Code
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };
