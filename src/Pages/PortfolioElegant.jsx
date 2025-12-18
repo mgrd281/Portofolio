@@ -592,7 +592,7 @@ const PortfolioElegant = () => {
 
 
   return (
-    <div className="min-h-screen bg-black text-white" dir="ltr">
+    <div className="min-h-screen bg-black text-white w-full overflow-x-hidden" dir="ltr" style={{ position: 'relative' }}>
       {/* Page Loader */}
       <PageLoader />
       
