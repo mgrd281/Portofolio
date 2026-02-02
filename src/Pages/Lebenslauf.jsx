@@ -106,7 +106,7 @@ const Lebenslauf = () => {
     const languages = [
         { name: 'Armenisch', level: 'Muttersprache', flag: '🇦🇲', progress: 100, subtitle: 'Native Speaker' },
         { name: 'Deutsch', level: 'Gute Kenntnisse (B2)', flag: '🇩🇪', progress: 70, subtitle: 'Selbstständige Sprachverwendung' },
-        { name: 'Englisch', level: 'Gute Kenntnisse (B2)', flag: '🇬🇧', progress: 70, subtitle: 'Business English' },
+        { name: 'Englisch', level: 'Grundkenntnisse (A2)', flag: '🇬🇧', progress: 40, subtitle: 'Elementare Sprachverwendung' },
         { name: 'Französisch', level: 'Grundkenntnisse (A1)', flag: '🇫🇷', progress: 25, subtitle: 'Basis' }
     ];
 
