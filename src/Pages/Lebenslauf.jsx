@@ -7,7 +7,7 @@ import {
     CheckCircle,
     Award,
     Mail,
-    Phone,
+    MessageCircle,
     MapPin,
     Linkedin,
     FileText,
@@ -159,8 +159,10 @@ const Lebenslauf = () => {
                                     <span>mgrdegh@gmx.de</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <Phone className="w-4 h-4 text-gray-400" />
-                                    <span>+49 1522 7322222</span>
+                                    <MessageCircle className="w-4 h-4 text-green-500" />
+                                    <a href="https://wa.me/4915227322222" target="_blank" rel="noopener noreferrer" className="hover:text-green-500 transition-colors">
+                                        +49 1522 7322222 (WhatsApp)
+                                    </a>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <MapPin className="w-4 h-4 text-gray-400" />
