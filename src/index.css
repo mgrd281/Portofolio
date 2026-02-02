@@ -46,39 +46,43 @@ body {
 
 /* Light Theme Overrides */
 [data-theme="light"] {
-	/* Light Gray/Beige Background */
-	background-color: #b8b3ae !important;
+	/* Light Gray/Beige Background - Same as screenshot */
+	background-color: #c5bfba !important;
 	
-	/* Background colors - Light Gray/Beige */
-	.bg-black { background-color: #b8b3ae !important; }
-	.bg-gray-900 { background-color: #c5c1bc !important; }
-	.bg-gray-800 { background-color: #d0ccc7 !important; }
+	/* Background colors - Light Gray/Beige tones */
+	.bg-black { background-color: #c5bfba !important; }
+	.bg-gray-900 { background-color: #d0cac5 !important; }
+	.bg-gray-800 { background-color: #dad4cf !important; }
 	
-	/* Text colors - Dark for Light Theme */
+	/* Text colors - Dark Gray for better readability */
 	.text-white { color: #2d3748 !important; }
-	.text-gray-300 { color: #4a5568 !important; }
-	.text-gray-400 { color: #718096 !important; }
-	.text-gray-500 { color: #a0aec0 !important; }
+	.text-gray-300 { color: #5a6575 !important; }
+	.text-gray-400 { color: #6b7684 !important; }
+	.text-gray-500 { color: #7d8794 !important; }
 	
 	/* Border colors - Darker for contrast */
-	.border-gray-800 { border-color: rgba(45, 55, 72, 0.2) !important; }
-	.border-gray-700 { border-color: rgba(74, 85, 104, 0.2) !important; }
-	.border-gray-800\/50 { border-color: rgba(45, 55, 72, 0.15) !important; }
-	.border-gray-700\/30 { border-color: rgba(74, 85, 104, 0.15) !important; }
-	.border-gray-700\/40 { border-color: rgba(74, 85, 104, 0.2) !important; }
+	.border-gray-800 { border-color: rgba(45, 55, 72, 0.25) !important; }
+	.border-gray-700 { border-color: rgba(74, 85, 104, 0.25) !important; }
+	.border-gray-800\/50 { border-color: rgba(45, 55, 72, 0.2) !important; }
+	.border-gray-700\/30 { border-color: rgba(74, 85, 104, 0.2) !important; }
+	.border-gray-700\/40 { border-color: rgba(74, 85, 104, 0.25) !important; }
 	
-	/* Header & Cards - Light with transparency */
-	.bg-black\/95 { background-color: rgba(184, 179, 174, 0.95) !important; }
-	.bg-black\/80 { background-color: rgba(184, 179, 174, 0.85) !important; }
-	.bg-black\/20 { background-color: rgba(255, 255, 255, 0.3) !important; }
-	.bg-gray-900\/50 { background-color: rgba(197, 193, 188, 0.5) !important; }
-	.bg-gray-900\/30 { background-color: rgba(197, 193, 188, 0.3) !important; }
+	/* Header & Cards - Light with subtle transparency */
+	.bg-black\/95 { background-color: rgba(197, 191, 186, 0.95) !important; }
+	.bg-black\/80 { background-color: rgba(197, 191, 186, 0.85) !important; }
+	.bg-black\/20 { background-color: rgba(255, 255, 255, 0.25) !important; }
+	.bg-gray-900\/50 { background-color: rgba(208, 202, 197, 0.5) !important; }
+	.bg-gray-900\/30 { background-color: rgba(208, 202, 197, 0.35) !important; }
 	
 	/* Shadows - Softer for Light Theme */
-	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
 	
-	/* Placeholder text */
-	.placeholder-gray-500::placeholder { color: #a0aec0 !important; }
+	/* Placeholder text - Darker gray */
+	.placeholder-gray-500::placeholder { color: #7d8794 !important; }
+	
+	/* Keep orange color vibrant in light mode */
+	.text-orange-500 { color: #f97316 !important; }
+	.bg-orange-500 { background-color: #f97316 !important; }
 }
 
 * {
