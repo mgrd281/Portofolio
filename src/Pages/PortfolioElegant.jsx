@@ -845,6 +845,13 @@ const PortfolioElegant = () => {
                       <span className="text-white font-semibold text-xs">+300% ROI</span>
                     </div>
                   </div>
+                  
+                  <div className="absolute top-1/2 -right-8 bg-black/90 backdrop-blur-md px-4 py-2 rounded-full border border-orange-500/50 shadow-xl transform -translate-y-1/2">
+                    <div className="flex items-center gap-1.5">
+                      <Globe className="w-4 h-4 text-orange-500" />
+                      <span className="text-white font-semibold text-xs">Shopify</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
