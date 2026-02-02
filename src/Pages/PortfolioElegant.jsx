@@ -744,38 +744,43 @@ const PortfolioElegant = () => {
         <div className="max-w-7xl mx-auto w-full relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-8">
             {/* Left Content */}
-            <div className="space-y-4 lg:space-y-5" data-aos="fade-right">
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1]">
-                <span className="text-white">
-                  Hallo,
-                </span>
-                <br />
-                <span className="text-orange-500">
-                  ich bin Mgrdegh
-                </span>
-              </h1>
-              
-              <div className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl font-light h-[7rem] md:h-[6rem] flex items-start">
-                <TypewriterLoopEffect 
-                  text="Spezialist für Online Marketing, Google Ads und E-Commerce. Ich helfe Unternehmen dabei, ihre digitale Präsenz zu stärken und messbare Ergebnisse zu erzielen."
-                  typeSpeed={50}
-                  deleteSpeed={30}
-                  pauseTime={3000}
-                  className="inline-block"
-                />
+            <div className="space-y-6 lg:space-y-8" data-aos="fade-up" data-aos-duration="600">
+              <div className="space-y-4">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.15] tracking-tight">
+                  <span className="text-white">
+                    Performance Marketing &
+                  </span>
+                  <br />
+                  <span className="text-orange-500">
+                    E-Commerce Experte
+                  </span>
+                </h1>
+                
+                <p className="text-xl md:text-2xl text-gray-300 leading-relaxed font-light">
+                  Ich skaliere Online-Shops mit messbaren Ergebnissen.
+                </p>
+                
+                <div className="flex flex-wrap gap-2 text-sm md:text-base text-gray-400 font-medium">
+                  <span>Google Ads</span>
+                  <span className="text-orange-500">•</span>
+                  <span>Shopify</span>
+                  <span className="text-orange-500">•</span>
+                  <span>Conversion Optimierung</span>
+                  <span className="text-orange-500">•</span>
+                  <span>Skalierung</span>
+                </div>
               </div>
 
-              <div className="flex flex-wrap gap-3 pt-2">
-                <a href="#contact">
-                  <button className="group px-6 py-3 bg-orange-500 text-white font-semibold rounded-xl hover:bg-orange-600 transition-all transform hover:scale-105 shadow-lg shadow-orange-500/30 flex items-center gap-2 text-sm">
-                    <span>Kontakt aufnehmen</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <a href="#contact" className="w-full sm:w-auto">
+                  <button className="group w-full sm:w-auto px-8 py-4 bg-orange-500 text-white font-semibold rounded-xl hover:bg-orange-600 transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-orange-500/30 flex items-center justify-center gap-2">
+                    <span>Kostenlose Erstberatung</span>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </a>
-                <a href="/CV-Lebenslauf.jpg" download>
-                  <button className="px-6 py-3 bg-black border-2 border-gray-700 text-white font-semibold rounded-xl hover:bg-gray-900 hover:border-orange-500/50 transition-all flex items-center gap-2 text-sm">
-                    <Download className="w-4 h-4" />
-                    Lebenslauf
+                <a href="#experience" className="w-full sm:w-auto">
+                  <button className="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/20 text-white font-semibold rounded-xl hover:bg-white/20 hover:border-orange-500/50 transition-all duration-200 hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                    <span>Projekte ansehen</span>
                   </button>
                 </a>
               </div>
@@ -799,8 +804,8 @@ const PortfolioElegant = () => {
             </div>
 
             {/* Right - Profile Image (Reduced Size) */}
-            <div className="relative flex justify-center lg:justify-end items-center mt-8 lg:mt-0" data-aos="fade-left">
-              <div className="relative w-[360px] h-[360px] md:w-[400px] md:h-[400px]">
+            <div className="relative flex justify-center lg:justify-end items-center mt-12 lg:mt-0" data-aos="fade-left" data-aos-duration="600" data-aos-delay="200">
+              <div className="relative w-[340px] h-[340px] md:w-[380px] md:h-[380px] transform-gpu transition-transform duration-700 hover:scale-[1.02] profile-image" style={{ animation: 'scaleIn 0.6s ease-out' }}>
                 {/* Animated Background Glow */}
                 <div className="absolute inset-0 bg-orange-500/20 rounded-full blur-3xl animate-pulse"></div>
                 
@@ -809,9 +814,9 @@ const PortfolioElegant = () => {
                 <div className="absolute inset-4 border-2 border-orange-400/20 rounded-full animate-spin-slow" style={{ animationDirection: 'reverse', animationDuration: '25s' }}></div>
                 
                 {/* Main Profile Image Container */}
-                <div className="relative w-full h-full">
-                  {/* Orange Circle Frame */}
-                  <div className="absolute inset-0 border-[6px] border-orange-500 rounded-full"></div>
+                <div className="relative w-full h-full profile-circle" style={{ boxShadow: '0 25px 60px rgba(0,0,0,.4)' }}>
+                  {/* Orange Circle Frame - Thinner */}
+                  <div className="absolute inset-0 border-[4px] border-orange-500 rounded-full"></div>
                   
                   {/* Profile Image */}
                   <div className="absolute inset-4 rounded-full overflow-hidden bg-gradient-to-br from-orange-500/10 to-black">
@@ -854,6 +859,153 @@ const PortfolioElegant = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Social Proof Section - Trust Indicators */}
+      <section className="py-16 px-6 lg:px-10 bg-black border-t border-b border-gray-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12" data-aos="fade-up">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+              Vertrauen von Kunden
+            </h2>
+            <p className="text-gray-400">
+              Messbare Erfolge für Online-Shops
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Testimonial 1 */}
+            <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-orange-500/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="0">
+              <div className="flex gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-orange-500 fill-orange-500" />
+                ))}
+              </div>
+              <p className="text-gray-300 mb-4 italic">
+                "Unser Umsatz verdoppelte sich in 60 Tagen. Die Google Ads Kampagnen sind perfekt optimiert."
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-orange-500/20 rounded-full flex items-center justify-center">
+                  <Users className="w-5 h-5 text-orange-500" />
+                </div>
+                <div>
+                  <div className="text-white font-semibold text-sm">Thomas M.</div>
+                  <div className="text-gray-500 text-xs">Shopify Store Owner</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial 2 */}
+            <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-orange-500/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+              <div className="flex gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-orange-500 fill-orange-500" />
+                ))}
+              </div>
+              <p className="text-gray-300 mb-4 italic">
+                "Professionelle Beratung und klare Kommunikation. Die Conversion Rate stieg um 47%."
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-orange-500/20 rounded-full flex items-center justify-center">
+                  <Users className="w-5 h-5 text-orange-500" />
+                </div>
+                <div>
+                  <div className="text-white font-semibold text-sm">Sarah K.</div>
+                  <div className="text-gray-500 text-xs">E-Commerce Manager</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial 3 */}
+            <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-orange-500/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+              <div className="flex gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-orange-500 fill-orange-500" />
+                ))}
+              </div>
+              <p className="text-gray-300 mb-4 italic">
+                "Schnelle Umsetzung, messbare Ergebnisse. ROAS von 4.1 nach nur 3 Wochen."
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-orange-500/20 rounded-full flex items-center justify-center">
+                  <Users className="w-5 h-5 text-orange-500" />
+                </div>
+                <div>
+                  <div className="text-white font-semibold text-sm">Michael B.</div>
+                  <div className="text-gray-500 text-xs">Online Shop Betreiber</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section - Premium 4 Cards */}
+      <section id="services" className="py-28 px-6 lg:px-10 bg-gray-900/30">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16" data-aos="fade-up">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Leistungen
+            </h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Datengetriebene Strategien für messbaren Erfolg
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Service Card 1 */}
+            <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-orange-500/50 hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="0">
+              <div className="w-14 h-14 bg-orange-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange-500/20 transition-colors">
+                <Megaphone className="w-7 h-7 text-orange-500" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                Google Ads Skalierung
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Profitables Wachstum durch optimierte Kampagnen
+              </p>
+            </div>
+
+            {/* Service Card 2 */}
+            <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-orange-500/50 hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="100">
+              <div className="w-14 h-14 bg-orange-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange-500/20 transition-colors">
+                <Globe className="w-7 h-7 text-orange-500" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                Shopify Optimierung
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Performance & Conversion Rate steigern
+              </p>
+            </div>
+
+            {/* Service Card 3 */}
+            <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-orange-500/50 hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="200">
+              <div className="w-14 h-14 bg-orange-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange-500/20 transition-colors">
+                <Target className="w-7 h-7 text-orange-500" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                Conversion Rate Optimierung
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Mehr Umsatz aus bestehendem Traffic
+              </p>
+            </div>
+
+            {/* Service Card 4 */}
+            <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-orange-500/50 hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="300">
+              <div className="w-14 h-14 bg-orange-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange-500/20 transition-colors">
+                <Zap className="w-7 h-7 text-orange-500" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                Funnel Aufbau
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Verkaufsprozesse die konvertieren
+              </p>
             </div>
           </div>
         </div>

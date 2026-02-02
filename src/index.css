@@ -643,6 +643,32 @@ img {
   transition: transform 0.3s ease;
 }
 
+/* Profile Circle Premium Shadow */
+.profile-circle {
+  box-shadow: 0 25px 60px rgba(0,0,0,.4);
+}
+
+/* Scale In Animation */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Subtle Button Hover Lift */
+button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
 /* Mobile: Smaller upward movement */
 @media (max-width: 768px) {
   .hero-profile,
