@@ -65,6 +65,11 @@ html[data-theme="light"] body {
 [data-theme="light"] .bg-gray-900 { background-color: #d0cac5 !important; }
 [data-theme="light"] .bg-gray-800 { background-color: #dad4cf !important; }
 
+/* Important: Override all sections and divs with bg-black */
+[data-theme="light"] section.bg-black { background-color: #c5bfba !important; }
+[data-theme="light"] div.bg-black { background-color: #c5bfba !important; }
+[data-theme="light"] main.bg-black { background-color: #c5bfba !important; }
+
 /* Text colors - Dark Gray for better readability */
 [data-theme="light"] .text-white { color: #2d3748 !important; }
 [data-theme="light"] .text-gray-300 { color: #5a6575 !important; }
@@ -628,3 +633,22 @@ img {
 	user-select: none;
 	cursor: default;
   } */
+
+/* Hero Profile Image - Slight Upward Movement */
+.hero-profile,
+.profile-image,
+.hero-avatar,
+.profile-circle img {
+  transform: translateY(-25px);
+  transition: transform 0.3s ease;
+}
+
+/* Mobile: Smaller upward movement */
+@media (max-width: 768px) {
+  .hero-profile,
+  .profile-image,
+  .hero-avatar,
+  .profile-circle img {
+    transform: translateY(-12px);
+  }
+}
