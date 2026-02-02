@@ -137,13 +137,6 @@ const Lebenslauf = () => {
                                     <Download className="w-4 h-4" />
                                     Lebenslauf herunterladen
                                 </a>
-                                <Link
-                                    to="/portfolio-2"
-                                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#0f172a] text-teal-400 border border-teal-400/30 text-sm font-medium rounded-lg hover:bg-teal-400/10 transition-all duration-300"
-                                >
-                                    <Code className="w-4 h-4" />
-                                    Portfolio V2
-                                </Link>
                             </div>
                         </div>
 
