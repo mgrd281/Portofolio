@@ -48,42 +48,39 @@ body {
 [data-theme="light"] {
 	/* Light Gray/Beige Background - Same as screenshot */
 	background-color: #c5bfba !important;
-	
-	/* Background colors - Light Gray/Beige tones */
-	.bg-black { background-color: #c5bfba !important; }
-	.bg-gray-900 { background-color: #d0cac5 !important; }
-	.bg-gray-800 { background-color: #dad4cf !important; }
-	
-	/* Text colors - Dark Gray for better readability */
-	.text-white { color: #2d3748 !important; }
-	.text-gray-300 { color: #5a6575 !important; }
-	.text-gray-400 { color: #6b7684 !important; }
-	.text-gray-500 { color: #7d8794 !important; }
-	
-	/* Border colors - Darker for contrast */
-	.border-gray-800 { border-color: rgba(45, 55, 72, 0.25) !important; }
-	.border-gray-700 { border-color: rgba(74, 85, 104, 0.25) !important; }
-	.border-gray-800\/50 { border-color: rgba(45, 55, 72, 0.2) !important; }
-	.border-gray-700\/30 { border-color: rgba(74, 85, 104, 0.2) !important; }
-	.border-gray-700\/40 { border-color: rgba(74, 85, 104, 0.25) !important; }
-	
-	/* Header & Cards - Light with subtle transparency */
-	.bg-black\/95 { background-color: rgba(197, 191, 186, 0.95) !important; }
-	.bg-black\/80 { background-color: rgba(197, 191, 186, 0.85) !important; }
-	.bg-black\/20 { background-color: rgba(255, 255, 255, 0.25) !important; }
-	.bg-gray-900\/50 { background-color: rgba(208, 202, 197, 0.5) !important; }
-	.bg-gray-900\/30 { background-color: rgba(208, 202, 197, 0.35) !important; }
-	
-	/* Shadows - Softer for Light Theme */
-	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
-	
-	/* Placeholder text - Darker gray */
-	.placeholder-gray-500::placeholder { color: #7d8794 !important; }
-	
-	/* Keep orange color vibrant in light mode */
-	.text-orange-500 { color: #f97316 !important; }
-	.bg-orange-500 { background-color: #f97316 !important; }
 }
+
+/* Background colors - Light Gray/Beige tones */
+[data-theme="light"] .bg-black { background-color: #c5bfba !important; }
+[data-theme="light"] .bg-gray-900 { background-color: #d0cac5 !important; }
+[data-theme="light"] .bg-gray-800 { background-color: #dad4cf !important; }
+
+/* Text colors - Dark Gray for better readability */
+[data-theme="light"] .text-white { color: #2d3748 !important; }
+[data-theme="light"] .text-gray-300 { color: #5a6575 !important; }
+[data-theme="light"] .text-gray-400 { color: #6b7684 !important; }
+[data-theme="light"] .text-gray-500 { color: #7d8794 !important; }
+
+/* Border colors - Darker for contrast */
+[data-theme="light"] .border-gray-800 { border-color: rgba(45, 55, 72, 0.25) !important; }
+[data-theme="light"] .border-gray-700 { border-color: rgba(74, 85, 104, 0.25) !important; }
+[data-theme="light"] .border-gray-800\/50 { border-color: rgba(45, 55, 72, 0.2) !important; }
+[data-theme="light"] .border-gray-700\/30 { border-color: rgba(74, 85, 104, 0.2) !important; }
+[data-theme="light"] .border-gray-700\/40 { border-color: rgba(74, 85, 104, 0.25) !important; }
+
+/* Header & Cards - Light with subtle transparency */
+[data-theme="light"] .bg-black\/95 { background-color: rgba(197, 191, 186, 0.95) !important; }
+[data-theme="light"] .bg-black\/80 { background-color: rgba(197, 191, 186, 0.85) !important; }
+[data-theme="light"] .bg-black\/20 { background-color: rgba(255, 255, 255, 0.25) !important; }
+[data-theme="light"] .bg-gray-900\/50 { background-color: rgba(208, 202, 197, 0.5) !important; }
+[data-theme="light"] .bg-gray-900\/30 { background-color: rgba(208, 202, 197, 0.35) !important; }
+
+/* Placeholder text - Darker gray */
+[data-theme="light"] .placeholder-gray-500::placeholder { color: #7d8794 !important; }
+
+/* Keep orange color vibrant in light mode */
+[data-theme="light"] .text-orange-500 { color: #f97316 !important; }
+[data-theme="light"] .bg-orange-500 { background-color: #f97316 !important; }
 
 * {
 	margin: 0;
