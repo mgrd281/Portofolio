@@ -138,20 +138,6 @@ const Lebenslauf = () => {
                                     Lebenslauf herunterladen
                                 </a>
                                 <Link
-                                    to="/anschreiben"
-                                    className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-[#5B9AA0] text-[#5B9AA0] text-sm font-medium rounded-lg hover:bg-[#5B9AA0] hover:text-white transition-all duration-300"
-                                >
-                                    <FileText className="w-4 h-4" />
-                                    Anschreiben ansehen
-                                </Link>
-                                <Link
-                                    to="/portfolio"
-                                    className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-[#5B9AA0] text-[#5B9AA0] text-sm font-medium rounded-lg hover:bg-[#5B9AA0] hover:text-white transition-all duration-300"
-                                >
-                                    <Briefcase className="w-4 h-4" />
-                                    Portfolio V1
-                                </Link>
-                                <Link
                                     to="/portfolio-2"
                                     className="inline-flex items-center gap-2 px-6 py-3 bg-[#0f172a] text-teal-400 border border-teal-400/30 text-sm font-medium rounded-lg hover:bg-teal-400/10 transition-all duration-300"
                                 >
